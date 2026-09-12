@@ -1,0 +1,383 @@
+:root {
+  /* Core palette - Editorial & neutral */
+  --bg-color: #fdfbf7;
+  --surface-color: #ffffff;
+  --text-primary: #1c1b1a;
+  --text-secondary: #6b6863;
+  --accent-color: #e8e4db;
+  --brand-color: #000000;
+  --error-color: #d94b4b;
+  --success-color: #4f8a55;
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-serif: "Georgia", "Times New Roman", serif;
+  
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.03);
+  --shadow-float: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.04);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-bottom: calc(var(--spacing-xxl) * 2); /* Space for floating dock */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.editorial-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* Base Layout Classes */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.app-header {
+  padding: var(--spacing-xl) 0;
+  text-align: center;
+}
+
+.app-title {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.app-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* UI Elements */
+.card {
+  background: var(--surface-color);
+  border: 1px solid var(--accent-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary {
+  background-color: var(--brand-color);
+  color: var(--surface-color);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-full);
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: var(--surface-color);
+  color: var(--text-primary);
+  border: 1px solid var(--accent-color);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-full);
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent-color);
+}
+
+.input-field {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--accent-color);
+  border-radius: var(--border-radius-md);
+  background-color: var(--surface-color);
+  transition: border-color 0.2s ease;
+  margin-top: var(--spacing-xs);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--brand-color);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Floating Dock */
+.floating-dock {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--surface-color);
+  border: 1px solid var(--accent-color);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  padding: var(--spacing-xs);
+  box-shadow: var(--shadow-float);
+  z-index: 100;
+  width: 90%;
+  max-width: 400px;
+  justify-content: space-around;
+}
+
+.dock-item {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-full);
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+}
+
+.dock-item.active {
+  background-color: var(--brand-color);
+  color: var(--surface-color);
+}
+
+.dock-item:hover:not(.active) {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+}
+
+/* Avatar Layout */
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: var(--spacing-xl) 0;
+}
+
+.avatar-figure {
+  width: 300px;
+  max-width: 100%;
+  aspect-ratio: 3 / 5;
+  height: auto;
+  min-height: 400px;
+  background-color: #fff;
+  background-image: url('/mannequin.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: var(--border-radius-md);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--accent-color);
+}
+
+.avatar-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.avatar-top {
+  position: absolute;
+  top: 18%; /* align with chest */
+  left: 20%;
+  width: 60%;
+  height: 35%;
+  background-color: rgba(255, 255, 255, 0.7);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply; /* Helps blend flat clothes images */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-bottom {
+  position: absolute;
+  top: 50%; /* align with waist/legs */
+  left: 25%;
+  width: 50%;
+  height: 40%;
+  background-color: rgba(255, 255, 255, 0.7);
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-shoes {
+  position: absolute;
+  top: 88%; /* align with feet */
+  left: 30%;
+  width: 40%;
+  height: 10%;
+  background-color: rgba(255, 255, 255, 0.7);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+}
+
+/* Image Upload Preview */
+.image-upload-preview {
+  width: 100%;
+  height: 200px;
+  border: 2px dashed var(--accent-color);
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--text-secondary);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.image-upload-preview:hover {
+  border-color: var(--brand-color);
+  background-color: var(--bg-color);
+}
+
+.image-upload-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: var(--surface-color);
+}
+
+.clothes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.clothes-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.clothes-img-container {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background-color: var(--accent-color);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.clothes-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.clothes-info {
+  font-size: 0.85rem;
+}
+
+.clothes-title {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clothes-meta {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
